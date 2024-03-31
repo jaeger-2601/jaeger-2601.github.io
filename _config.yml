@@ -57,7 +57,7 @@ plugins:
 
 author:
   name   : "Harshaa Vardaan"
-  avatar : "/assets/images/bio-photo.JPG"
+  avatar : "/assets/images/bio-photo.jpg"
   bio    : "A driven tech enthusiast currently making waves as a Technology Associate at Morgan Stanley 🏦."
   links:
     - label: "GitHub"
@@ -80,7 +80,7 @@ defaults:
   # _posts
   - scope:
       path: ""
-      type: about
+      type: posts
     values:
       layout: single
       author_profile: true
