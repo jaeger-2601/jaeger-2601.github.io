@@ -23,6 +23,8 @@ minimal_mistakes_skin: dark
 search: true
 url: "https://harshaavardaan.com"
 
+og_image: /assets/images/og-image.png
+
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
