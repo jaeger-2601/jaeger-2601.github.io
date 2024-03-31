@@ -3,6 +3,7 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+As a Technology Associate at Morgan Stanley 🏦, I'm deeply engaged in crafting cutting-edge solutions that drive efficiency and innovation in the realm of finance and technology. With a focus on machine learning 🤖 and data engineering 🛠️, I've spearheaded work in data generation, model metrics tracking, and dynamic data processing pipelines. From reducing model training time from hours to minutes to architecting systems that seamlessly transform diverse datasets into actionable insights, I thrive on the challenge of pushing boundaries.
+
+Beyond my professional endeavors, I bring a warm and collaborative spirit to every project, fostering an environment where creativity and expertise intertwine. Whether it's harnessing the power of NLP to enhance feedback mechanisms or leveraging AWS to implement robust data storage solutions, I'm committed to delivering tangible results that propel both my team and our clients forward. In every endeavor, I aim to not just meet expectations, but exceed them, driving impactful change with a blend of technical prowess and genuine passion.
