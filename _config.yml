@@ -85,6 +85,9 @@ footer:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/harshaa-vardaan/"
 
+compress_html:
+  clippings: all
+
 defaults:
   # _posts
   - scope:
@@ -92,6 +95,7 @@ defaults:
       type: posts
     values:
       layout: single
+      show_date: true
       author_profile: true
       read_time: true
       comments: true
