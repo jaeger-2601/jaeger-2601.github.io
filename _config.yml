@@ -24,6 +24,7 @@ search: true
 url: "https://harshaavardaan.com"
 
 og_image: /assets/images/og-image.png
+logo: /assets/images/og-image.png
 
 # Build settings
 markdown: kramdown
@@ -75,6 +76,10 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/harshaa-vardaan/"
+    - label: "Resume"
+      icon: "fa fa-fw fa-file-text"
+      url: "/assets/documents/Harshaavardaan_resume.pdf"
+    
 
 footer:
   links:
