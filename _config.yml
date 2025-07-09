@@ -76,7 +76,7 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/harshaa-vardaan/"
-    - label: "Resume"
+    - label: "Résumé"
       icon: "fa fa-fw fa-file-text"
       url: "/assets/documents/Harshaavardaan_resume.pdf"
     
@@ -89,9 +89,6 @@ footer:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/harshaa-vardaan/"
-
-compress_html:
-  clippings: all
 
 defaults:
   # _posts
