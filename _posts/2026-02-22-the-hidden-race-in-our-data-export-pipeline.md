@@ -1,6 +1,6 @@
 ---
 title: "The Hidden Race in Our Data Export Pipeline"
-date: 2026-03-22T10:00:00-04:00
+date: 2026-02-22T10:00:00-04:00
 tagline: "How a subtle concurrency bug in our export pipeline led to inconsistent outputs — and what we changed to fix it."
 classes: wide
 images:
