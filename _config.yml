@@ -68,7 +68,7 @@ plugins:
 author:
   name   : "Harshaa Vardaan"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Full-Stack SDE-2 @ Morgan Stanley 💻 Distributed Systems & High-Performance Backend 🚀"
+  bio    : "Full-Stack SDE-2 at Morgan Stanley building distributed, high-performance systems"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
