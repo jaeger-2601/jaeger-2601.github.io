@@ -68,7 +68,7 @@ plugins:
 author:
   name   : "Harshaa Vardaan"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Associate Software Engineer at Morgan Stanley. ✍️ Writing what I build. 🛠️ Building what I learn."
+  bio    : "Full-Stack SDE-2 @ Morgan Stanley | Distributed Systems & High-Performance Backend | Java, Spring, Kafka, React"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -78,7 +78,7 @@ author:
       url: "https://www.linkedin.com/in/harshaa-vardaan/"
     - label: "Résumé"
       icon: "fa fa-fw fa-file-text"
-      url: "/assets/documents/Harshaavardaan_resume.pdf"
+      url: "/assets/documents/HarshaavardaanT_resume.pdf"
     
 
 footer:
