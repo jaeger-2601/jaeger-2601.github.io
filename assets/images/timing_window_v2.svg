@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="520" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="700" height="520" fill="#111111"/>
+
+  <!-- ══════════════ TITLE ══════════════ -->
+  <text x="350" y="34" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Overlapping Execution Windows</text>
+  <text x="350" y="52" text-anchor="middle" font-size="10" fill="#777777" font-style="italic">"The gap between reading and acknowledging created a window…"</text>
+
+  <!-- ══════════════ TIME AXIS ══════════════ -->
+  <!-- Axis line -->
+  <line x1="140" y1="430" x2="660" y2="430" stroke="#555555" stroke-width="1.2"/>
+  <!-- Arrow head -->
+  <polygon points="660,430 651,425 651,435" fill="#555555"/>
+  <text x="668" y="434" font-size="10" fill="#555555">time</text>
+
+  <!-- Tick marks & labels -->
+  <line x1="160" y1="426" x2="160" y2="436" stroke="#555555" stroke-width="1"/>
+  <text x="160" y="448" text-anchor="middle" font-size="9" fill="#555555">t0</text>
+
+  <line x1="260" y1="426" x2="260" y2="436" stroke="#555555" stroke-width="1"/>
+  <text x="260" y="448" text-anchor="middle" font-size="9" fill="#555555">t1</text>
+
+  <line x1="360" y1="426" x2="360" y2="436" stroke="#555555" stroke-width="1"/>
+  <text x="360" y="448" text-anchor="middle" font-size="9" fill="#555555">t2</text>
+
+  <line x1="460" y1="426" x2="460" y2="436" stroke="#555555" stroke-width="1"/>
+  <text x="460" y="448" text-anchor="middle" font-size="9" fill="#555555">t3</text>
+
+  <line x1="560" y1="426" x2="560" y2="436" stroke="#555555" stroke-width="1"/>
+  <text x="560" y="448" text-anchor="middle" font-size="9" fill="#555555">t4</text>
+
+  <!-- ══════════════ STAGE LABELS (top) ══════════════ -->
+  <!-- Vertical dividers for stage columns -->
+  <line x1="160" y1="65" x2="160" y2="420" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="260" y1="65" x2="260" y2="420" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="360" y1="65" x2="360" y2="420" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="460" y1="65" x2="460" y2="420" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="560" y1="65" x2="560" y2="420" stroke="#222222" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Stage header boxes -->
+  <rect x="160" y="66" width="100" height="28" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <text x="210" y="85" text-anchor="middle" font-size="9" fill="#888888">READ</text>
+
+  <rect x="260" y="66" width="100" height="28" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <text x="310" y="85" text-anchor="middle" font-size="9" fill="#888888">FETCH / TRANSFORM</text>
+
+  <rect x="360" y="66" width="100" height="28" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <text x="410" y="85" text-anchor="middle" font-size="9" fill="#888888">STREAM → FILE</text>
+
+  <rect x="460" y="66" width="100" height="28" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+  <text x="510" y="85" text-anchor="middle" font-size="9" fill="#888888">UPDATE STATUS</text>
+
+  <!-- ══════════════ WORKER 1 ROW ══════════════ -->
+  <!-- Row label -->
+  <text x="135" y="168" text-anchor="end" font-size="12" fill="#ffffff" font-weight="bold">Worker 1</text>
+  <text x="135" y="184" text-anchor="end" font-size="9" fill="#777777">(crashes)</text>
+
+  <!-- READ block -->
+  <rect x="160" y="148" width="100" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="210" y="169" text-anchor="middle" font-size="10" fill="#ffffff">read job123</text>
+
+  <!-- FETCH / TRANSFORM block -->
+  <rect x="260" y="148" width="100" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="310" y="169" text-anchor="middle" font-size="10" fill="#ffffff">fetch + transform</text>
+
+  <!-- STREAM → FILE block (partial, then crash) -->
+  <rect x="360" y="148" width="68" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="394" y="165" text-anchor="middle" font-size="10" fill="#ffffff">stream</text>
+  <text x="394" y="177" text-anchor="middle" font-size="8" fill="#999999">(partial)</text>
+
+  <!-- CRASH block -->
+  <rect x="428" y="144" width="44" height="40" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="450" y="161" text-anchor="middle" font-size="13">💥</text>
+  <text x="450" y="177" text-anchor="middle" font-size="9" fill="#ffffff">CRASH</text>
+
+  <!-- No ACK dashed tail -->
+  <line x1="472" y1="164" x2="560" y2="164" stroke="#555555" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <text x="516" y="158" text-anchor="middle" font-size="8" fill="#777777">no ACK</text>
+  <!-- Re-appears in queue marker -->
+  <rect x="560" y="150" width="80" height="32" fill="#1a1a1a" stroke="#555555" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="600" y="162" text-anchor="middle" font-size="8" fill="#777777">re-queued</text>
+  <text x="600" y="174" text-anchor="middle" font-size="8" fill="#777777">by Redis</text>
+
+  <!-- Connector dots -->
+  <circle cx="160" cy="164" r="4" fill="#ffffff"/>
+  <circle cx="260" cy="164" r="4" fill="#ffffff"/>
+  <circle cx="360" cy="164" r="4" fill="#ffffff"/>
+  <circle cx="428" cy="164" r="4" fill="#ffffff"/>
+
+  <!-- ══════════════ WORKER 2 ROW ══════════════ -->
+  <!-- Row label -->
+  <text x="135" y="278" text-anchor="end" font-size="12" fill="#ffffff" font-weight="bold">Worker 2</text>
+  <text x="135" y="294" text-anchor="end" font-size="9" fill="#777777">(completes)</text>
+
+  <!-- READ block (starts later, at t2) -->
+  <rect x="360" y="258" width="100" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="410" y="279" text-anchor="middle" font-size="10" fill="#ffffff">read job123</text>
+
+  <!-- FETCH / TRANSFORM -->
+  <rect x="460" y="258" width="100" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="510" y="279" text-anchor="middle" font-size="10" fill="#ffffff">fetch + transform</text>
+
+  <!-- STREAM → FILE (full run) -->
+  <rect x="560" y="258" width="80" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="600" y="279" text-anchor="middle" font-size="10" fill="#ffffff">stream →</text>
+
+  <!-- UPDATE STATUS block (extends slightly beyond axis) -->
+  <rect x="640" y="258" width="46" height="32" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="663" y="272" text-anchor="middle" font-size="8" fill="#ffffff">update</text>
+  <text x="663" y="284" text-anchor="middle" font-size="8" fill="#ffffff">status ✓</text>
+
+  <!-- Connector dots -->
+  <circle cx="360" cy="274" r="4" fill="#ffffff"/>
+  <circle cx="460" cy="274" r="4" fill="#ffffff"/>
+  <circle cx="560" cy="274" r="4" fill="#ffffff"/>
+  <circle cx="640" cy="274" r="4" fill="#ffffff"/>
+
+  <!-- ══════════════ OVERLAP / DANGER ZONE ══════════════ -->
+  <!-- Overlap region: both workers active on file at t2→t3 (x=360..460) -->
+  <!-- Hatching via repeated diagonal lines -->
+  <clipPath id="overlapClip">
+    <rect x="360" y="100" width="100" height="220"/>
+  </clipPath>
+  <g clip-path="url(#overlapClip)">
+    <line x1="340" y1="100" x2="480" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="355" y1="100" x2="495" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="370" y1="100" x2="510" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="385" y1="100" x2="525" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="400" y1="100" x2="540" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="415" y1="100" x2="460" y2="220" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="430" y1="100" x2="460" y2="180" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="320" y1="120" x2="460" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="305" y1="120" x2="460" y2="360" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+    <line x1="290" y1="140" x2="460" y2="380" stroke="#ffffff" stroke-width="1" opacity="0.07"/>
+  </g>
+  <!-- Overlap border -->
+  <rect x="360" y="100" width="100" height="220" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="5,3" opacity="0.4"/>
+  <!-- Overlap bracket + label -->
+  <line x1="360" y1="110" x2="460" y2="110" stroke="#ffffff" stroke-width="1.2" opacity="0.6"/>
+  <line x1="360" y1="106" x2="360" y2="116" stroke="#ffffff" stroke-width="1.2" opacity="0.6"/>
+  <line x1="460" y1="106" x2="460" y2="116" stroke="#ffffff" stroke-width="1.2" opacity="0.6"/>
+  <rect x="362" y="94" width="96" height="16" rx="2" fill="#1a1a1a" stroke="#555555" stroke-width="1"/>
+  <text x="410" y="106" text-anchor="middle" font-size="9" fill="#ffffff">TIMING WINDOW</text>
+
+  <!-- ══════════════ FILE WRITE COLLISION ZONE ══════════════ -->
+  <!-- Arrow from Worker1 stream down to file icon area -->
+  <line x1="394" y1="180" x2="350" y2="360" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <!-- Arrow from Worker2 stream down to file icon area -->
+  <line x1="600" y1="290" x2="350" y2="360" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- File icon (folded corner doc) -->
+  <polygon points="298,360 388,360 388,385 406,385 406,420 298,420" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="388,360 406,385 388,385" fill="#2a2a2a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="352" y="393" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="bold">JOB123.csv</text>
+  <text x="352" y="411" text-anchor="middle" font-size="8" fill="#777777">interleaved writes</text>
+
+  <!-- ══════════════ FIGURE CAPTION ══════════════ -->
+  <text x="350" y="470" text-anchor="middle" font-size="10" fill="#555555" font-style="italic">Figure 2: Overlapping execution windows — both workers target the same file path</text>
+  <text x="350" y="485" text-anchor="middle" font-size="9" fill="#444444" font-style="italic">Observing a job was treated as equivalent to claiming it. The system never enforced exclusivity.</text>
+
+</svg>
