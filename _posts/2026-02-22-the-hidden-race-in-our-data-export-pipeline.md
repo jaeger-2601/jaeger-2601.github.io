@@ -1,7 +1,7 @@
 ---
 title: "The Hidden Race in Our Data Export Pipeline"
 date: 2026-02-22T10:00:00-04:00
-tagline: "How a subtle concurrency bug in our export pipeline led to inconsistent outputs — and what we changed to fix it."
+tagline: "How a subtle concurrency bug in our export pipeline led to data corruption and what we changed to fix it."
 classes: wide
 images:
   path: /assets/images/unsplash-image-2.jpg
@@ -9,6 +9,9 @@ header:
   overlay_image: /assets/images/unsplash-image-2.jpg
   caption: "Photo credit: [**Jonathan Chng**](https://unsplash.com/@jon_chng)"
   overlay_filter: 0.5
+  actions:
+    - label: "More Info"
+      url: "https://docs.confluent.io/kafka/design/consumer-design.html?utm_source=chatgpt.com#consumer-groups-and-group-ids"
 categories:
   - Distributed Systems
 tags:
@@ -19,7 +22,7 @@ tags:
   - Redis
 ---
 
-## The Hidden Race in Our Data Export Pipeline
+### A Design That Almost Worked
 
 Our platform supports exporting large datasets into files on demand. The flow is asynchronous. A client requests an export, we generate a job identifier, process the request in the background, and store the resulting file on a network attached storage path. Once the job completes, we update the status and return the file location to the client.
 
@@ -31,11 +34,17 @@ Over time we started noticing a strange issue in production. Some exported files
 
 ### How the Race Happened in the Redis Worker Model
 
+
+![Figure 1: Two workers observing the same job before acknowledgment](/assets/images/post2-diag1.drawio.png)
+
+
 The export process consists of multiple logical stages. A worker fetches data from internal services, transforms and aggregates the dataset, streams the output into a file, and finally updates the job status to mark it as complete. Each stage functions correctly in isolation. The failure did not originate inside a single stage but at the boundary between worker executions.
 
 Under production load two scenarios triggered the issue. A job could time out and be retried while the original execution was still running. In another case a worker could crash after writing part of the file but before updating the job status.
 
 The Redis worker implementation followed a pattern where a worker would read a job identifier from the queue, begin processing it, and only remove it from the queue after completion. The gap between reading and acknowledging created a window where another worker could observe and process the same job. If the first worker crashed before removing the job, it would remain visible in the queue and another worker would pick it up.
+
+![Figure 2: Visualize overlapping execution windows.](/assets/images/timing_window_diagram.svg)
 
 Because both executions targeted the same file path, their writes interleaved. The filesystem allowed concurrent writes and from its perspective nothing illegal happened. From the application perspective however the output became corrupted, containing duplicated or truncated data.
 
@@ -44,6 +53,8 @@ The core issue was the lack of atomic ownership. Observing a job was treated as 
 ---
 
 ### Moving to Kafka for Deterministic Ownership
+
+![Figure 3: Partition-level ownership in Kafka consumer groups](/assets/images/post2-diag3.drawio.png)
 
 To eliminate the issue we redesigned the pipeline using Kafka consumer groups. Jobs are now published to a Kafka topic and consumed by workers that belong to a consumer group. Kafka guarantees that each partition is assigned to exactly one consumer within the group at a time. Message delivery becomes the atomic claim operation. Workers no longer compete through polling and visibility gaps.
 

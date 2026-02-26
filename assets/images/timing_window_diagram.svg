@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" font-family="'Courier New', monospace">
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#ffffff" stroke-width="0.1" opacity="0.4"/>
+    </pattern>
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <!-- Diagonal stripe pattern for overlap zone -->
+    <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#1a0505"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#ef4444" stroke-width="2.5" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="barA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="barB" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="crashGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="420" fill="#07090f"/>
+  <rect width="900" height="420" fill="url(#grid)"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="900" height="50" fill="#0c1220"/>
+  <rect x="0" y="49" width="900" height="1.5" fill="#1e3a5f"/>
+  <text x="450" y="19" text-anchor="middle" font-size="10" fill="#475569" letter-spacing="5">TIMING DIAGRAM</text>
+  <text x="450" y="38" text-anchor="middle" font-size="14" fill="#e2e8f0" font-weight="bold" letter-spacing="0.5">The Gap Between Read and Acknowledgment</text>
+
+  <!-- ── Layout constants (encoded in positions below) ──
+       Left label col: x=20..130
+       Timeline area:  x=140..860
+       T0=140  T1=280  T2=460  T3=580  T4=700  T5=860
+  -->
+
+  <!-- ══════════════════ TIME AXIS ══════════════════ -->
+  <!-- Axis line -->
+  <line x1="140" y1="370" x2="860" y2="370" stroke="#334155" stroke-width="1.5"/>
+  <!-- Ticks + labels -->
+  <line x1="140" y1="365" x2="140" y2="378" stroke="#475569" stroke-width="1.5"/>
+  <text x="140" y="392" text-anchor="middle" font-size="9" fill="#475569">t=0</text>
+
+  <line x1="280" y1="365" x2="280" y2="378" stroke="#475569" stroke-width="1.5"/>
+  <text x="280" y="392" text-anchor="middle" font-size="9" fill="#475569">t=1</text>
+
+  <line x1="420" y1="365" x2="420" y2="378" stroke="#475569" stroke-width="1.5"/>
+  <text x="420" y="392" text-anchor="middle" font-size="9" fill="#475569">t=2</text>
+
+  <line x1="560" y1="365" x2="560" y2="378" stroke="#475569" stroke-width="1.5"/>
+  <text x="560" y="392" text-anchor="middle" font-size="9" fill="#475569">t=3</text>
+
+  <line x1="700" y1="365" x2="700" y2="378" stroke="#475569" stroke-width="1.5"/>
+  <text x="700" y="392" text-anchor="middle" font-size="9" fill="#475569">t=4</text>
+
+  <line x1="840" y1="365" x2="840" y2="378" stroke="#475569" stroke-width="1.5"/>
+  <text x="840" y="392" text-anchor="middle" font-size="9" fill="#475569">t=5</text>
+
+  <text x="860" y="373" font-size="9" fill="#334155">→ time</text>
+
+  <!-- ══════════════════ WORKER A ROW ══════════════════ -->
+  <!-- Row label -->
+  <text x="130" y="145" text-anchor="end" font-size="11" fill="#93c5fd" font-weight="bold">Worker A</text>
+  <text x="130" y="160" text-anchor="end" font-size="8.5" fill="#475569">(crashes)</text>
+
+  <!-- Segment 1: READ (t=0 → t=1)  140..280 -->
+  <rect x="140" y="122" width="140" height="34" rx="4" fill="url(#barA)" filter="url(#shadow)"/>
+  <text x="210" y="144" text-anchor="middle" font-size="10" fill="#dbeafe" font-weight="bold">READ job123</text>
+
+  <!-- Segment 2: PROCESSING (t=1 → t=3.5)  280..630 -->
+  <rect x="280" y="122" width="350" height="34" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="455" y="144" text-anchor="middle" font-size="10" fill="#93c5fd" font-weight="bold">processing…</text>
+
+  <!-- Segment 3: CRASH (t=3.5)  630..680 -->
+  <rect x="630" y="118" width="60" height="42" rx="4" fill="url(#crashGrad)" filter="url(#glow-red)"/>
+  <text x="660" y="136" text-anchor="middle" font-size="13">💥</text>
+  <text x="660" y="152" text-anchor="middle" font-size="9" fill="#fecaca" font-weight="bold">CRASH</text>
+
+  <!-- Dotted tail after crash (job never ACKed) -->
+  <line x1="692" y1="139" x2="840" y2="139" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"/>
+  <text x="766" y="133" text-anchor="middle" font-size="8.5" fill="#ef4444">no ACK sent</text>
+
+  <!-- ── Milestone markers Worker A ── -->
+  <!-- t=0: read event dot -->
+  <circle cx="140" cy="139" r="5" fill="#3b82f6" filter="url(#glow-blue)"/>
+  <!-- t=1: processing start -->
+  <circle cx="280" cy="139" r="5" fill="#3b82f6"/>
+  <!-- crash marker vertical -->
+  <line x1="660" y1="108" x2="660" y2="170" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.7"/>
+
+  <!-- ══════════════════ WORKER B ROW ══════════════════ -->
+  <!-- Row label -->
+  <text x="130" y="245" text-anchor="end" font-size="11" fill="#d8b4fe" font-weight="bold">Worker B</text>
+  <text x="130" y="260" text-anchor="middle" font-size="8.5" fill="#475569">(survives)</text>
+
+  <!-- Segment 1: READ (t=0.8 → t=1.8)  252..392 -->
+  <rect x="252" y="222" width="140" height="34" rx="4" fill="url(#barB)" filter="url(#shadow)"/>
+  <text x="322" y="244" text-anchor="middle" font-size="10" fill="#ede9fe" font-weight="bold">READ job123</text>
+
+  <!-- Segment 2: PROCESSING (t=1.8 → t=5)  392..840 -->
+  <rect x="392" y="222" width="448" height="34" rx="4" fill="#2d1a4e" stroke="#a855f7" stroke-width="1.2"/>
+  <text x="616" y="244" text-anchor="middle" font-size="10" fill="#d8b4fe" font-weight="bold">processing… (writes /exports/job123.csv)</text>
+
+  <!-- Milestone markers Worker B -->
+  <circle cx="252" cy="239" r="5" fill="#a855f7" filter="url(#glow-blue)"/>
+  <circle cx="392" cy="239" r="5" fill="#a855f7"/>
+  <circle cx="840" cy="239" r="5" fill="#a855f7"/>
+
+  <!-- ══════════════════ DANGER ZONE (OVERLAP) ══════════════════ -->
+  <!-- Both workers active: Worker A t=1→3.5 (280..630), Worker B t=0.8→5 (252..840)
+       Overlap window where BOTH are alive and processing: 280..630 -->
+  <rect x="280" y="108" width="352" height="168" rx="0" fill="url(#danger)" opacity="0.55"/>
+  <!-- Danger zone border -->
+  <rect x="280" y="108" width="352" height="168" rx="0" fill="none" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="6,3" opacity="0.7"/>
+
+  <!-- Bracket + label at top -->
+  <line x1="280" y1="100" x2="632" y2="100" stroke="#ef4444" stroke-width="1.5" opacity="0.8"/>
+  <line x1="280" y1="96" x2="280" y2="106" stroke="#ef4444" stroke-width="1.5" opacity="0.8"/>
+  <line x1="632" y1="96" x2="632" y2="106" stroke="#ef4444" stroke-width="1.5" opacity="0.8"/>
+  <rect x="368" y="82" width="220" height="20" rx="4" fill="#450a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="478" y="97" text-anchor="middle" font-size="10" fill="#fca5a5" font-weight="bold">⚡ TIMING WINDOW — both workers alive</text>
+
+  <!-- ══════════════════ PHASE ANNOTATIONS ══════════════════ -->
+  <!-- READ annotation for A -->
+  <line x1="210" y1="156" x2="210" y2="174" stroke="#3b82f6" stroke-width="1" opacity="0.6"/>
+  <text x="210" y="185" text-anchor="middle" font-size="8" fill="#60a5fa">A reads</text>
+  <text x="210" y="196" text-anchor="middle" font-size="8" fill="#60a5fa">no lock yet</text>
+
+  <!-- READ annotation for B -->
+  <line x1="322" y1="256" x2="322" y2="274" stroke="#a855f7" stroke-width="1" opacity="0.6"/>
+  <text x="322" y="284" text-anchor="middle" font-size="8" fill="#c084fc">B reads</text>
+  <text x="322" y="295" text-anchor="middle" font-size="8" fill="#c084fc">same job!</text>
+
+  <!-- Vertical dashed: both start processing -->
+  <line x1="392" y1="65" x2="392" y2="360" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+  <text x="392" y="63" text-anchor="middle" font-size="8" fill="#fbbf24">both active</text>
+
+  <!-- ══════════════════ LEGEND ══════════════════ -->
+  <rect x="0" y="400" width="900" height="20" fill="#0c1220"/>
+  <rect x="0" y="400" width="900" height="1" fill="#1e3a5f"/>
+
+  <rect x="20" y="407" width="22" height="8" rx="2" fill="url(#barA)"/>
+  <text x="48" y="415" font-size="8.5" fill="#64748b">read phase</text>
+
+  <rect x="120" y="407" width="22" height="8" rx="2" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="148" y="415" font-size="8.5" fill="#64748b">processing</text>
+
+  <rect x="230" y="407" width="22" height="8" rx="2" fill="url(#crashGrad)"/>
+  <text x="258" y="415" font-size="8.5" fill="#64748b">crash (no ACK)</text>
+
+  <rect x="370" y="405" width="14" height="12" rx="1" fill="url(#danger)" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="390" y="415" font-size="8.5" fill="#ef4444">timing window (race)</text>
+
+  <line x1="520" y1="411" x2="544" y2="411" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="550" y="415" font-size="8.5" fill="#64748b">concurrent processing begins</text>
+
+  <text x="880" y="415" text-anchor="end" font-size="8.5" fill="#1e3a5f" font-style="italic">Figure 2</text>
+</svg>
