@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="520" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="560" height="520" fill="#111111"/>
+
+  <!-- ══════════════ KAFKA TOPIC (top) ══════════════ -->
+  <!-- Outer topic box -->
+  <rect x="80" y="36" width="400" height="108" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Topic label -->
+  <text x="280" y="58" text-anchor="middle" font-size="11" fill="#aaaaaa" font-weight="bold" letter-spacing="1">KAFKA TOPIC</text>
+  <text x="280" y="74" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">exports.jobs</text>
+
+  <!-- Partition 0 box -->
+  <rect x="104" y="84" width="158" height="44" fill="#111111" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="183" y="102" text-anchor="middle" font-size="9" fill="#aaaaaa">PARTITION</text>
+  <text x="183" y="118" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">0</text>
+
+  <!-- Partition 1 box -->
+  <rect x="298" y="84" width="158" height="44" fill="#111111" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="377" y="102" text-anchor="middle" font-size="9" fill="#aaaaaa">PARTITION</text>
+  <text x="377" y="118" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">1</text>
+
+  <!-- Message pills in Partition 0 -->
+  <rect x="112" y="90" width="34" height="14" rx="2" fill="#2a2a2a" stroke="#555555" stroke-width="1"/>
+  <text x="129" y="101" text-anchor="middle" font-size="7" fill="#888888">job_A</text>
+  <rect x="150" y="90" width="34" height="14" rx="2" fill="#2a2a2a" stroke="#555555" stroke-width="1"/>
+  <text x="167" y="101" text-anchor="middle" font-size="7" fill="#888888">job_C</text>
+  <rect x="188" y="90" width="34" height="14" rx="2" fill="#2a2a2a" stroke="#555555" stroke-width="1"/>
+  <text x="205" y="101" text-anchor="middle" font-size="7" fill="#888888">job_E</text>
+
+  <!-- Message pills in Partition 1 -->
+  <rect x="306" y="90" width="34" height="14" rx="2" fill="#2a2a2a" stroke="#555555" stroke-width="1"/>
+  <text x="323" y="101" text-anchor="middle" font-size="7" fill="#888888">job_B</text>
+  <rect x="344" y="90" width="34" height="14" rx="2" fill="#2a2a2a" stroke="#555555" stroke-width="1"/>
+  <text x="361" y="101" text-anchor="middle" font-size="7" fill="#888888">job_D</text>
+  <rect x="382" y="90" width="34" height="14" rx="2" fill="#2a2a2a" stroke="#555555" stroke-width="1"/>
+  <text x="399" y="101" text-anchor="middle" font-size="7" fill="#888888">job_F</text>
+
+  <!-- ══════════════ ARROWS: Partitions → Workers ══════════════ -->
+  <!-- Partition 0 → Worker A (straight down) -->
+  <line x1="183" y1="144" x2="183" y2="228" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="183,228 177,216 189,216" fill="#ffffff"/>
+
+  <!-- Partition 1 → Worker B (straight down) -->
+  <line x1="377" y1="144" x2="377" y2="228" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="377,228 371,216 383,216" fill="#ffffff"/>
+
+  <!-- "exclusive" label on arrows -->
+  <rect x="140" y="172" width="86" height="18" rx="2" fill="#111111"/>
+  <text x="183" y="185" text-anchor="middle" font-size="9" fill="#aaaaaa">exclusive assign</text>
+
+  <rect x="334" y="172" width="86" height="18" rx="2" fill="#111111"/>
+  <text x="377" y="185" text-anchor="middle" font-size="9" fill="#aaaaaa">exclusive assign</text>
+
+  <!-- ══════════════ CONSUMER GROUP wrapper ══════════════ -->
+  <rect x="68" y="228" width="424" height="144" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="280" y="250" text-anchor="middle" font-size="10" fill="#aaaaaa" letter-spacing="1">CONSUMER GROUP</text>
+  <text x="280" y="265" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="bold">export-workers</text>
+
+  <!-- Worker A box -->
+  <rect x="96" y="274" width="158" height="80" fill="#111111" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="175" y="304" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Worker A</text>
+  <text x="175" y="322" text-anchor="middle" font-size="8" fill="#888888">owns partition 0</text>
+  <text x="175" y="338" text-anchor="middle" font-size="8" fill="#aaaaaa">state: RUNNING</text>
+  <text x="175" y="350" text-anchor="middle" font-size="8" fill="#666666">heartbeat: active</text>
+
+  <!-- Worker B box -->
+  <rect x="306" y="274" width="158" height="80" fill="#111111" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="385" y="304" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Worker B</text>
+  <text x="385" y="322" text-anchor="middle" font-size="8" fill="#888888">owns partition 1</text>
+  <text x="385" y="338" text-anchor="middle" font-size="8" fill="#aaaaaa">state: RUNNING</text>
+  <text x="385" y="350" text-anchor="middle" font-size="8" fill="#666666">heartbeat: active</text>
+
+  <!-- "NO OVERLAP" badge between workers -->
+  <line x1="254" y1="314" x2="306" y2="314" stroke="#555555" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="255" y="302" width="50" height="24" rx="2" fill="#1a1a1a" stroke="#555555" stroke-width="1"/>
+  <text x="280" y="313" text-anchor="middle" font-size="7" fill="#777777">no shared</text>
+  <text x="280" y="323" text-anchor="middle" font-size="7" fill="#777777">partition</text>
+
+  <!-- ══════════════ ARROWS: Workers → Persistent Storage ══════════════ -->
+  <line x1="175" y1="354" x2="175" y2="404" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="175,404 169,393 181,393" fill="#ffffff"/>
+  <line x1="385" y1="354" x2="385" y2="404" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="385,404 379,393 391,393" fill="#ffffff"/>
+
+  <!-- ══════════════ PERSISTENT STORAGE (bottom) ══════════════ -->
+  <rect x="96" y="404" width="158" height="52" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="175" y="425" text-anchor="middle" font-size="9" fill="#aaaaaa">Job State Store</text>
+  <text x="175" y="443" text-anchor="middle" font-size="9" fill="#ffffff">worker_id, ts, attempt</text>
+
+  <rect x="306" y="404" width="158" height="52" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="385" y="425" text-anchor="middle" font-size="9" fill="#aaaaaa">Job State Store</text>
+  <text x="385" y="443" text-anchor="middle" font-size="9" fill="#ffffff">worker_id, ts, attempt</text>
+
+  <!-- ══════════════ FIGURE CAPTION ══════════════ -->
+  <text x="280" y="484" text-anchor="middle" font-size="10" fill="#555555" font-style="italic">Figure 2: Partition-level ownership in Kafka consumer groups</text>
+  <text x="280" y="500" text-anchor="middle" font-size="9" fill="#444444" font-style="italic">Each partition is assigned to exactly one worker — delivery is the atomic claim.</text>
+
+</svg>
