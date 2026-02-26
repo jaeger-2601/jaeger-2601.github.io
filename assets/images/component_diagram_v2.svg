@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="480" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="500" height="480" fill="#111111"/>
+
+  <!-- ══════════════ Redis Queue (cylinder) ══════════════ -->
+  <!-- Cylinder body -->
+  <rect x="155" y="28" width="190" height="70" rx="0" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Cylinder top ellipse -->
+  <ellipse cx="250" cy="28" rx="95" ry="16" fill="#2a2a2a" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Cylinder bottom ellipse (inside) -->
+  <ellipse cx="250" cy="98" rx="95" ry="16" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Label -->
+  <text x="250" y="70" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Redis Queue</text>
+
+  <!-- ══════════════ Arrows: Redis → Worker 1 & Worker 2 ══════════════ -->
+  <!-- Arrow to Worker 1 -->
+  <line x1="185" y1="114" x2="130" y2="188" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="130,188 122,175 138,178" fill="#ffffff"/>
+
+  <!-- Arrow to Worker 2 -->
+  <line x1="315" y1="114" x2="370" y2="188" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="370,188 356,178 372,175" fill="#ffffff"/>
+
+  <!-- Same job label on left arrow -->
+  <rect x="88" y="138" width="70" height="26" rx="2" fill="#1a1a1a"/>
+  <text x="123" y="149" text-anchor="middle" font-size="9" fill="#aaaaaa">job_id:</text>
+  <text x="123" y="161" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">job123</text>
+
+  <!-- Same job label on right arrow -->
+  <rect x="342" y="138" width="70" height="26" rx="2" fill="#1a1a1a"/>
+  <text x="377" y="149" text-anchor="middle" font-size="9" fill="#aaaaaa">job_id:</text>
+  <text x="377" y="161" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">job123</text>
+
+  <!-- ══════════════ Worker 1 (rect) ══════════════ -->
+  <rect x="40" y="188" width="175" height="60" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="127" y="224" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Worker 1</text>
+
+  <!-- ══════════════ Worker 2 (rect) ══════════════ -->
+  <rect x="285" y="188" width="175" height="60" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="372" y="224" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="bold">Worker 2</text>
+
+  <!-- ══════════════ Arrows: Workers → File ══════════════ -->
+  <!-- Worker 1 → File -->
+  <line x1="155" y1="248" x2="222" y2="318" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="222,318 211,307 225,304" fill="#ffffff"/>
+
+  <!-- Worker 2 → File -->
+  <line x1="345" y1="248" x2="278" y2="318" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="278,318 275,304 289,307" fill="#ffffff"/>
+
+  <!-- ══════════════ JOB123.csv (folded-corner doc icon) ══════════════ -->
+  <!-- Main doc body (with top-right corner cut) -->
+  <polygon points="183,318 317,318 317,355 337,355 337,420 183,420" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- Folded corner triangle -->
+  <polygon points="317,318 337,355 317,355" fill="#333333" stroke="#ffffff" stroke-width="1.5"/>
+  <!-- File label -->
+  <text x="260" y="376" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="bold">JOB123.csv</text>
+
+  <!-- ══════════════ Figure caption ══════════════ -->
+  <text x="250" y="454" text-anchor="middle" font-size="10" fill="#666666" font-style="italic">Figure 1: Two workers observing the same job before acknowledgment</text>
+
+</svg>

@@ -22,8 +22,6 @@ tags:
   - Redis
 ---
 
-### A Design That Almost Worked
-
 Our platform supports exporting large datasets into files on demand. The flow is asynchronous. A client requests an export, we generate a job identifier, process the request in the background, and store the resulting file on a network attached storage path. Once the job completes, we update the status and return the file location to the client.
 
 The original implementation of this pipeline was built on a Redis based worker model. Jobs were pushed into a Redis queue and a pool of workers would poll the queue, pick up job identifiers, and generate the corresponding files. The design looked simple and practical, and it worked well under normal load.
@@ -35,7 +33,7 @@ Over time we started noticing a strange issue in production. Some exported files
 ### How the Race Happened in the Redis Worker Model
 
 
-![Figure 1: Two workers observing the same job before acknowledgment](/assets/images/post2-diag1.png){: .align-center}
+![Figure 1: Two workers observing the same job before acknowledgment](/assets/images/component_diagram_v2.svg){: .align-center}
 
 
 The export process consists of multiple logical stages. A worker fetches data from internal services, transforms and aggregates the dataset, streams the output into a file, and finally updates the job status to mark it as complete. Each stage functions correctly in isolation. The failure did not originate inside a single stage but at the boundary between worker executions.
