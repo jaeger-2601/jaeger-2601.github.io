@@ -22,11 +22,13 @@ tags:
   - Redis
 ---
 
-Our platform supports exporting large datasets into files on demand. The flow is asynchronous. A client requests an export, we generate a job identifier, process the request in the background, and store the resulting file on a network attached storage path. Once the job completes, we update the status and return the file location to the client.
+It started with a file that was slightly larger than it should have been.
 
-The original implementation of this pipeline was built on a Redis based worker model. Jobs were pushed into a Redis queue and a pool of workers would poll the queue, pick up job identifiers, and generate the corresponding files. The design looked simple and practical, and it worked well under normal load.
+No crashes. No alerts. Just an export that didn’t look quite right. When we opened it, we found duplicated sections and partially repeated content. At first it felt like bad data or a serialization issue. But the deeper we dug, the stranger it became.
 
-Over time we started noticing a strange issue in production. Some exported files were larger than expected and in certain cases the size was more than double what it should have been. When we opened the files we saw duplicated sections and partially repeated content. There were no crashes visible in service logs and no obvious error signals. The problem only became clear after tracing job execution across workers and correlating timestamps. What we discovered was that a race condition existed inside the Redis worker model itself.
+Our platform supports exporting large datasets on demand. A client requests an export, we generate a job identifier, process it asynchronously, and write the final file to a network-attached storage path. Once completed, we update the status and return the file location. The pipeline was built on a Redis-based worker model, jobs pushed to a queue, workers polling and processing them in the background. Simple, practical, and stable under normal load.
+
+But after correlating worker logs and job timestamps in production, a pattern emerged. The same job was being processed more than once. The system wasn’t crashing, it was racing. What we uncovered was a subtle race condition hidden inside what looked like a perfectly safe Redis worker model.
 
 ---
 
