@@ -9,6 +9,9 @@ header:
   overlay_image: /assets/images/unsplash-image-2.jpg
   caption: "Photo credit: [**Jonathan Chng**](https://unsplash.com/@jon_chng)"
   overlay_filter: 0.5
+  actions:
+    - label: "More Info"
+      url: "https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html"
 categories:
   - Distributed Systems
 tags:
@@ -19,7 +22,7 @@ tags:
   - Redis
 ---
 
-## The Hidden Race in Our Data Export Pipeline
+### A Design That Almost Worked
 
 Our platform supports exporting large datasets into files on demand. The flow is asynchronous. A client requests an export, we generate a job identifier, process the request in the background, and store the resulting file on a network attached storage path. Once the job completes, we update the status and return the file location to the client.
 
