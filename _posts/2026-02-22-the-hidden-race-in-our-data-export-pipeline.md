@@ -70,6 +70,8 @@ This prevents duplicate active executions while still allowing automatic recover
 
 ### Dead Letter Queue and Intelligent Failure Handling
 
+![Figure 4: Dead Letter Queue and Intelligent Failure Handling](/assets/images/heartbeat_recovery_diagram.svg){: .align-center}
+
 We also introduced a Dead Letter Queue to handle irrecoverable failures. If a job fails repeatedly beyond a configured retry threshold, it is no longer reprocessed indefinitely. Instead, the job is published to a dedicated DLQ topic along with diagnostic metadata including the failure reason and attempt count.
 
 This prevents poison messages from blocking partitions or causing infinite retry loops. It also allows operators to inspect failed exports separately without impacting healthy traffic.

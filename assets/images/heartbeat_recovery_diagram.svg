@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="620" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="560" height="620" fill="#111111"/>
+
+  <!-- ══════════════ JOB STATE STORE (top center) ══════════════ -->
+  <rect x="170" y="32" width="220" height="64" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="280" y="56" text-anchor="middle" font-size="10" fill="#aaaaaa" letter-spacing="1">JOB STATE STORE</text>
+  <text x="280" y="74" text-anchor="middle" font-size="10" fill="#ffffff">job123 · state: RUNNING</text>
+  <text x="280" y="88" text-anchor="middle" font-size="9" fill="#666666">worker: A · attempt: 1 · hb: t1</text>
+
+  <!-- Vertical spine from store down -->
+  <line x1="280" y1="96" x2="280" y2="128" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- ══════════════ WORKER A (left branch) ══════════════ -->
+  <!-- Branch left -->
+  <line x1="280" y1="128" x2="160" y2="128" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="160" y1="128" x2="160" y2="156" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="160,156 154,144 166,144" fill="#ffffff"/>
+
+  <!-- Worker A box -->
+  <rect x="68" y="156" width="184" height="52" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="160" y="180" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Worker A</text>
+  <text x="160" y="197" text-anchor="middle" font-size="9" fill="#aaaaaa">processing · heartbeat: t1</text>
+
+  <!-- Heartbeat pulse marks -->
+  <line x1="80" y1="212" x2="80" y2="240" stroke="#555555" stroke-width="1"/>
+  <text x="88" y="222" font-size="8" fill="#666666">hb update</text>
+  <line x1="80" y1="224" x2="100" y2="224" stroke="#555555" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- Arrow down to crash -->
+  <line x1="160" y1="208" x2="160" y2="246" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="160,246 154,234 166,234" fill="#ffffff"/>
+
+  <!-- CRASH block -->
+  <rect x="96" y="246" width="128" height="48" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="160" y="265" text-anchor="middle" font-size="16">💥</text>
+  <text x="160" y="285" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="bold">CRASH</text>
+
+  <!-- No more heartbeat note -->
+  <line x1="160" y1="294" x2="160" y2="318" stroke="#555555" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="164" y="310" font-size="8" fill="#666666">heartbeat stops</text>
+  <!-- Dead end -->
+  <line x1="148" y1="318" x2="172" y2="318" stroke="#555555" stroke-width="1.2"/>
+
+  <!-- ══════════════ WORKER B (right branch) ══════════════ -->
+  <!-- Branch right from spine -->
+  <line x1="280" y1="128" x2="400" y2="128" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="400" y1="128" x2="400" y2="156" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="400,156 394,144 406,144" fill="#ffffff"/>
+
+  <!-- Worker B box -->
+  <rect x="308" y="156" width="184" height="52" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="400" y="180" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="bold">Worker B</text>
+  <text x="400" y="197" text-anchor="middle" font-size="9" fill="#aaaaaa">receives redelivered message</text>
+
+  <!-- Arrow down to check state -->
+  <line x1="400" y1="208" x2="400" y2="246" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="400,246 394,234 406,234" fill="#ffffff"/>
+
+  <!-- CHECK STATE block -->
+  <rect x="308" y="246" width="184" height="48" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="400" y="267" text-anchor="middle" font-size="10" fill="#aaaaaa">checks job state store</text>
+  <text x="400" y="284" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="bold">state = RUNNING</text>
+
+  <!-- Arrow down to detect stale -->
+  <line x1="400" y1="294" x2="400" y2="332" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="400,332 394,320 406,320" fill="#ffffff"/>
+
+  <!-- STALE HEARTBEAT block -->
+  <rect x="308" y="332" width="184" height="52" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="400" y="352" text-anchor="middle" font-size="9" fill="#aaaaaa">heartbeat age &gt; threshold</text>
+  <text x="400" y="368" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="bold">stale heartbeat detected</text>
+  <text x="400" y="382" text-anchor="middle" font-size="8" fill="#666666">execution considered abandoned</text>
+
+  <!-- Arrow down to take ownership -->
+  <line x1="400" y1="384" x2="400" y2="416" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="400,416 394,404 406,404" fill="#ffffff"/>
+
+  <!-- TAKE OWNERSHIP block -->
+  <rect x="308" y="416" width="184" height="52" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="400" y="437" text-anchor="middle" font-size="9" fill="#aaaaaa">conditional update</text>
+  <text x="400" y="453" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="bold">transitions to RETRY</text>
+  <text x="400" y="467" text-anchor="middle" font-size="8" fill="#aaaaaa">worker: B · attempt: 2</text>
+
+  <!-- Arrow down to re-execution -->
+  <line x1="400" y1="468" x2="400" y2="498" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="400,498 394,486 406,486" fill="#ffffff"/>
+
+  <!-- RE-EXECUTE block -->
+  <rect x="308" y="498" width="184" height="40" fill="#1a1a1a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="400" y="517" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="bold">new execution begins</text>
+  <text x="400" y="532" text-anchor="middle" font-size="8" fill="#aaaaaa">safe — ownership verified</text>
+
+  <!-- ══════════════ DLQ BRANCH ══════════════ -->
+  <!-- Branch off from RETRY block if attempts exceeded -->
+  <line x1="308" y1="442" x2="232" y2="442" stroke="#555555" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="232,442 242,437 242,447" fill="#555555"/>
+
+  <!-- DLQ condition label -->
+  <text x="270" y="436" text-anchor="middle" font-size="8" fill="#666666">if attempts</text>
+  <text x="270" y="446" text-anchor="middle" font-size="8" fill="#666666">&gt; threshold</text>
+
+  <!-- DLQ box -->
+  <rect x="68" y="416" width="164" height="64" fill="#1a1a1a" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="150" y="441" text-anchor="middle" font-size="9" fill="#aaaaaa" letter-spacing="1">DEAD LETTER QUEUE</text>
+  <text x="150" y="459" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="bold">DLQ Topic</text>
+  <text x="150" y="474" text-anchor="middle" font-size="8" fill="#666666">failure_reason · attempt_count</text>
+
+  <!-- ══════════════ TIMELINE ANNOTATION (left margin) ══════════════ -->
+  <line x1="42" y1="156" x2="42" y2="538" stroke="#333333" stroke-width="1"/>
+  <!-- Time markers -->
+  <line x1="38" y1="182" x2="46" y2="182" stroke="#444444" stroke-width="1"/>
+  <text x="36" y="186" text-anchor="end" font-size="8" fill="#555555">t1</text>
+
+  <line x1="38" y1="270" x2="46" y2="270" stroke="#444444" stroke-width="1"/>
+  <text x="36" y="274" text-anchor="end" font-size="8" fill="#555555">t2</text>
+
+  <line x1="38" y1="358" x2="46" y2="358" stroke="#444444" stroke-width="1"/>
+  <text x="36" y="362" text-anchor="end" font-size="8" fill="#555555">t3</text>
+
+  <line x1="38" y1="442" x2="46" y2="442" stroke="#444444" stroke-width="1"/>
+  <text x="36" y="446" text-anchor="end" font-size="8" fill="#555555">t4</text>
+
+  <line x1="38" y1="518" x2="46" y2="518" stroke="#444444" stroke-width="1"/>
+  <text x="36" y="522" text-anchor="end" font-size="8" fill="#555555">t5</text>
+
+  <!-- ══════════════ FIGURE CAPTION ══════════════ -->
+  <text x="280" y="582" text-anchor="middle" font-size="10" fill="#555555" font-style="italic">Figure 3: Crash recovery via stale heartbeat detection and RETRY transition</text>
+  <text x="280" y="597" text-anchor="middle" font-size="9" fill="#444444" font-style="italic">Worker B verifies ownership before executing — DLQ captures irrecoverable failures</text>
+
+</svg>
