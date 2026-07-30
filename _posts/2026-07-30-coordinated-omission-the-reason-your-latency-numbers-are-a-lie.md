@@ -4,22 +4,22 @@ date: 2026-07-29T10:00:00-04:00
 tagline: "How a default load testing pattern made our latency numbers look better than they were, and what we did to fix it."
 classes: wide
 images:
-  path: /assets/images/unsplash-image-4.jpg
+  path: /assets/images/unsplash-image-3.jpg
 header:
-  overlay_image: /assets/images/unsplash-image-4.jpg
-  caption: "Photo credit: [**Jonathan Chng**](https://unsplash.com/@jon_chng)"
+  overlay_image: /assets/images/unsplash-image-3.jpg
+  caption: "Photo credit: [**Itadaki**](https://unsplash.com/@itadakidesu)"
   overlay_filter: 0.5
   actions: 
     - label: "More Info"
-      url: "https://docs.confluent.io/kafka/design/consumer-design.html?utm_source=chatgpt.com#consumer-groups-and-group-ids"
+      url: "https://qconsf.com/sf2012/dl/qcon-sanfran-2012/slides/GilTene_HowNotToMeasureLatency.pdf"
 categories:
-  - Distributed Systems
+  - Performance Engineering
 tags:
-  - Distributed Systems
-  - Kafka
-  - Concurrency
-  - System Design
-  - Redis
+  - Locust
+  - Load Testing
+  - Latency
+  - Scalability
+  - Performance Engineering
 ---
 
 If you've ever worked with Kafka in production, you’ve probably dealt with consumer group rebalancing at some point. Most of the time, it’s just background noise. But every now and then, it turns into a full-blown operational headache, especially when your processes have a task that is long.
