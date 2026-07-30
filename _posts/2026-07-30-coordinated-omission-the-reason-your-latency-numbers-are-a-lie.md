@@ -87,7 +87,7 @@ class ApiUser(HttpUser):
         self.client.get("/items/42")
 ```
 
-Locust still runs each user as a greenlet, so a single user cannot send a new request while its previous one is genuinely still in flight. constant_throughput reduces coordinated omission, but it does not fully erase it. To be truly rigorous, we pushed toward more users and more workers so that the aggregate arrival rate stays independent of any single slow response. For us, this is where scaling the worker processes up actually mattered, because at close to 100k requests per minute, a handful of workers were nowhere near enough to hold a true arrival rate once responses started slowing down.
+Locust still runs each user as a greenlet, so a single user cannot send a new request while its previous one is genuinely still in flight. `constant_throughput` reduces coordinated omission, but it does not fully erase it. To be truly rigorous, we pushed toward more users and more workers so that the aggregate arrival rate stays independent of any single slow response. For us, this is where scaling the worker processes up actually mattered, because at close to 100k requests per minute, a handful of workers were nowhere near enough to hold a true arrival rate once responses started slowing down.
 
 ![Figure 3: Closed load testing model vs Open load testing model](/assets/images/closed_vs_open_loop_timelines.svg){: .align-center}
 
