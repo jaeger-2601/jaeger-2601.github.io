@@ -4,9 +4,9 @@ date: 2026-07-29T10:00:00-04:00
 tagline: "How a default load testing pattern made our latency numbers look better than they were, and what we did to fix it."
 classes: wide
 images:
-  path: /assets/images/unsplash-image-3.jpg
+  path: /assets/images/unsplash-image-4.jpg
 header:
-  overlay_image: /assets/images/unsplash-image-3.jpg
+  overlay_image: /assets/images/unsplash-image-4.jpg
   caption: "Photo credit: [**Jonathan Chng**](https://unsplash.com/@jon_chng)"
   overlay_filter: 0.5
   actions: 
