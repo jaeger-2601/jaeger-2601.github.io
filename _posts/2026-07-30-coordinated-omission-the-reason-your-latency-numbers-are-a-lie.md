@@ -44,11 +44,13 @@ Each simulated user runs its task, waits for the response, and then goes again. 
 
 In the healthy case this looks fine. Requests go out at a steady pace and come back quickly.
 
-<>
+![Figure 1: Closed load testing model healthy case](/assets/images/closed_model_healthy_case.svg){: .align-center}
+
 
 The trouble starts when one response takes much longer than the rest. Every request that a real user population would have sent during that slow window simply does not happen, because your one blocked user is waiting instead of sending. Those missing requests are the ones that would have shown high latency, so their absence is what quietly pulls the tail latency numbers down.
 
-<>
+![Figure 2: Closed load testing model coordinated omission scenario](/assets/images/closed_model_coordinated_omission.svg){: .align-center}
+
 
 ---
 
