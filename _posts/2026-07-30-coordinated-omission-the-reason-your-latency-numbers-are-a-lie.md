@@ -22,9 +22,21 @@ tags:
   - Performance Engineering
 ---
 
-If you've ever worked with Kafka in production, you’ve probably dealt with consumer group rebalancing at some point. Most of the time, it’s just background noise. But every now and then, it turns into a full-blown operational headache, especially when your processes have a task that is long.
+Coordinated omission is a measurement problem that shows up in a lot of load testing setups, and it has a habit of making latency numbers look much better than they actually are. The rough idea is that when your service slows down, your load generator stops sending requests and waits, so all the requests that would have piled up duriing the slow period never got recorded. We end up measuring the system on its good behavior and missing most of the bad.
 
-We ran into this exact scenario when building out a feature that exports large datasets into files on demand. At first glance, it sounded simple: a consumer reads a message, gathers some data, writes it to a file, and stores it on a network path for download. The issue? Some of these tasks could run for close to thirty minutes.
+Our team ran into this issue the hard way. We had a load test telling our p95 was around 350ms but actual production data something closer to 1.2 seconds under similar load. We spent a decent amount of time assuming that something in the service had regressed in production environment and dug around in the code for a while without finding anything that could explain a gap that large. It took us longer to realize the problem was with how our load testing was counting latency rather than the service itself.
 
-## Where Things Went Wrong
-In our Kafka setup, each export request lands on a topic. A group of consumers picks them up and starts processing. Nothing special, until a task drags on longer than expected. Kafka expects each consumer to poll the broker at regular intervals. By default, that interval (`max.poll.interval.ms`) is set to five minutes.
+---
+For some context on our load testing setup, we were running Locust in distributed mode using Locust Swarm, with a master process and worker processes that we could scale up or down depending on the load we wanted to generate. Generating maximum load mattered because our API sees close to 100k requests per minute at peak. On top of the volume, we have a fairly strict SLA on latency, so the tail latency was not something we can hand wave away. A typical load test task looks something like this:
+
+```python
+from locust import HttpUser, task
+
+class ApiUser(HttpUser):
+
+    @task
+    def get_item(self):
+        self.client.get("/items/42")
+```
+
+Each simulated user runs its task, waits for the response, and then goes again. That loop is the whole problem. A user does not fire its next request until the previous one has come back. So, if the the server stalls for two seconds, that user is just sitting there, blocked, and not generating any load during the exact window you most want to observe.
