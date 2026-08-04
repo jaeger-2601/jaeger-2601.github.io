@@ -1,7 +1,7 @@
 ---
-title: "Coordinated Omission: The Reason Your Latency Numbers Are a Lie"
+title: "Coordinated Omission: The Bias Built Into How We Measure Latency"
 date: 2026-07-29T10:00:00-04:00
-tagline: "How a default load testing pattern made our latency numbers look better than they were, and what we did to fix it."
+tagline: "How our load test kept telling us everything was fine at 100k requests a minute, and why that turned out to be wrong."
 classes: wide
 images:
   path: /assets/images/unsplash-image-3.jpg
